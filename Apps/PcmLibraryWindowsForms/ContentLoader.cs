@@ -56,10 +56,13 @@ namespace PcmHacking
         /// </summary>
         private string GetFileUrl(string path)
         {
-            string urlBase = "https://raw.githubusercontent.com/LegacyNsfw/PcmHacks/";
-            string branch = this.appVersion == null ? "develop" : "Release/" + this.appVersion;
-            string result = urlBase + branch + path;
-            return result;
+            string urlBase = "https://raw.githubusercontent.com/PcmHammer/PcmHammer/refs/heads/";
+            string branch = string.IsNullOrWhiteSpace(this.appVersion) || 
+                string.Equals(this.appVersion, "HEAD", StringComparison.OrdinalIgnoreCase)
+                ? "develop"
+                : "Release/" + this.appVersion;
+
+            return urlBase + branch + path;
         }
 
         /// <summary>
